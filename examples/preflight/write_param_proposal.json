@@ -1,0 +1,50 @@
+{
+  "operation_id": "sim.write_param",
+  "arguments": {"param": "ignition_timing", "value": 12.5},
+  "execution_mode": "simulator",
+  "bench": {
+    "target": {
+      "ecu_id": "sim-ecu-1",
+      "hardware_id": "hw-sim-001",
+      "software_id": "sw-1.0.0",
+      "calibration_id": "cal-a",
+      "family": "sim.ecu",
+      "verified": true,
+      "confidence": "confirmed",
+      "evidence": [
+        {
+          "source": "simulator",
+          "timestamp": "2026-10-27T20:00:00+00:00",
+          "provenance": "example",
+          "verification_method": "fixture",
+          "confidence": "confirmed",
+          "expires_at": "2099-01-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "adapter_id": "sim-adapter",
+    "programmer_id": "sim-prog",
+    "power_source_id": "sim-psu",
+    "protocol": "sim.v1",
+    "relationships_confirmed": true,
+    "power": {
+      "voltage_v": 13.5,
+      "voltage_min": 11.5,
+      "voltage_max": 14.5,
+      "measured": true,
+      "evidence": [
+        {
+          "source": "dmm",
+          "timestamp": "2026-10-27T20:00:00+00:00",
+          "provenance": "example",
+          "verification_method": "fixture",
+          "confidence": "confirmed",
+          "expires_at": "2099-01-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "session_id": "sess-example",
+    "session_valid": true,
+    "recovery_plan": "reload prior calibration from backup image"
+  }
+}
