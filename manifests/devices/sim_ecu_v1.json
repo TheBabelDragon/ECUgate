@@ -1,0 +1,24 @@
+{
+  "device_id": "sim.ecu.v1",
+  "manufacturer": "ECUgate Labs",
+  "model": "HorsePowerPoint Simulator",
+  "firmware_version": "1.0.0",
+  "interface_type": "simulated",
+  "vendor_id": "SIMU",
+  "product_id": "ECU1",
+  "supported_protocols": ["ecugate.sim.v1"],
+  "supported_operations": ["read", "propose", "write"],
+  "power": {
+    "voltage_min": 11.5,
+    "voltage_max": 14.5,
+    "voltage_nominal": 13.8,
+    "current_max_a": 2.0,
+    "transient_notes": "Simulator only — no physical supply",
+    "confidence": "confirmed"
+  },
+  "programming_requirements": ["authorized_session", "validated_power"],
+  "recovery_capabilities": ["soft_reset"],
+  "adapter_id": "horsepowerpoint.sim",
+  "schema_version": "1.0",
+  "notes": "In-process simulator. Not a physical ECU."
+}
