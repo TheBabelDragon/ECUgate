@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecugate"
+version = "0.1.0"
+description = "ECUgate — model-agnostic agent tool and memory substrate for constrained, auditable ECU interaction."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "TheBabelDragon" }]
+keywords = ["agent", "ecu", "tools", "memory", "permissions"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-cov>=4.1"]
+
+[project.scripts]
+horsepowerpoint = "examples.horsepowerpoint.demo:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ecugate = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-q --tb=short"
