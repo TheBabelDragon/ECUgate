@@ -126,20 +126,45 @@ class DiscoveryReport:
 
 
 class DiscoveryEngine:
-    def __init__(self, manifests: Optional[List[DeviceManifest]] = None, manifest_dir: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        manifests: Optional[List[DeviceManifest]] = None,
+        manifest_dir: Optional[str] = None,
+        enumerator: Any = None,
+    ) -> None:
         self._manifests: List[DeviceManifest] = list(manifests or [])
         if manifest_dir:
             self._manifests.extend(load_manifests(manifest_dir))
         self._simulated: List[InterfaceRecord] = []
+        self._enumerator = enumerator
+        self._last_enum_error: Optional[str] = None
 
     def register_manifest(self, manifest: DeviceManifest) -> None:
         self._manifests.append(manifest)
+
+    def set_enumerator(self, enumerator: Any) -> None:
+        """Attach a host or composite enumerator (opt-in)."""
+        self._enumerator = enumerator
 
     def inject_simulated_interface(self, iface: InterfaceRecord) -> None:
         self._simulated.append(iface)
 
     def enumerate(self) -> List[InterfaceRecord]:
-        return list(self._simulated)
+        out: List[InterfaceRecord] = list(self._simulated)
+        seen = {i.interface_id for i in out}
+        if self._enumerator is not None:
+            try:
+                host_ifaces = self._enumerator.enumerate()
+            except Exception as e:
+                host_ifaces = []
+                self._last_enum_error = str(e)
+            else:
+                self._last_enum_error = None
+            for iface in host_ifaces:
+                if iface.interface_id not in seen:
+                    seen.add(iface.interface_id)
+                    out.append(iface)
+        return out
 
     def discover(self, *, non_destructive: bool = True) -> DiscoveryReport:
         ts = utc_now_iso()
