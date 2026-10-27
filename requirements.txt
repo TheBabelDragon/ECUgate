@@ -1,0 +1,4 @@
+# Core has zero required third-party dependencies (stdlib only).
+# Optional development tools:
+pytest>=7.4
+pytest-cov>=4.1
