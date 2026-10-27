@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "TheBabelDragon" }]
-keywords = ["agent", "ecu", "tools", "memory", "permissions", "obd"]
+keywords = ["agent", "ecu", "tools", "memory", "permissions", "obd", "preflight"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -31,6 +31,7 @@ vehicle = ["pyserial>=3.5"]
 horsepowerpoint = "examples.horsepowerpoint.demo:main"
 ecugate-discover = "ecugate.discovery.cli:main"
 ecugate-vehicle = "ecugate.vehicle_io.cli:main"
+ecugate-preflight = "ecugate.preflight.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
