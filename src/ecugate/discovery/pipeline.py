@@ -143,7 +143,6 @@ class DiscoveryEngine:
         self._manifests.append(manifest)
 
     def set_enumerator(self, enumerator: Any) -> None:
-        """Attach a host or composite enumerator (opt-in)."""
         self._enumerator = enumerator
 
     def inject_simulated_interface(self, iface: InterfaceRecord) -> None:
@@ -253,6 +252,48 @@ class DiscoveryEngine:
             suggestions=suggestions, unknown_fields=unknown, conflicts=conflicts,
             programming_ready=programming_ready, programming_blockers=blockers, evidence=evidence,
         )
+
+    def discover_inventory(self, *, non_destructive: bool = True):
+        """Multi-interface bench inventory (schema v2). Does not authorize writes."""
+        from ecugate.discovery.topology import BenchTopology
+
+        interfaces = self.enumerate()
+        topo = BenchTopology(manifests=self._manifests)
+        for rel in getattr(self, "_pending_relationships", []) or []:
+            topo.confirm_relationship(
+                rel["from_id"], rel["to_id"], rel["type"], note=rel.get("note")
+            )
+        for iface_id, role in (getattr(self, "_role_overrides", {}) or {}).items():
+            topo.set_role(iface_id, role)
+        return topo.build(interfaces)
+
+    def confirm_topology_relationship(
+        self,
+        from_id: str,
+        to_id: str,
+        relationship_type: str = "programs",
+        *,
+        note: str | None = None,
+    ) -> None:
+        from ecugate.discovery.topology import RelationshipType
+
+        if not hasattr(self, "_pending_relationships"):
+            self._pending_relationships = []
+        self._pending_relationships.append(
+            {
+                "from_id": from_id,
+                "to_id": to_id,
+                "type": RelationshipType(relationship_type),
+                "note": note,
+            }
+        )
+
+    def set_device_role(self, interface_id: str, role: str) -> None:
+        from ecugate.discovery.topology import DeviceRole
+
+        if not hasattr(self, "_role_overrides"):
+            self._role_overrides = {}
+        self._role_overrides[interface_id] = DeviceRole(role)
 
     def _match_manifests(self, iface: InterfaceRecord) -> List[DeviceManifest]:
         hits: List[DeviceManifest] = []
