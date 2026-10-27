@@ -24,9 +24,11 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4", "pytest-cov>=4.1"]
+host = ["pyserial>=3.5", "pyusb>=1.2"]
 
 [project.scripts]
 horsepowerpoint = "examples.horsepowerpoint.demo:main"
+ecugate-discover = "ecugate.discovery.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

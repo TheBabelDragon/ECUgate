@@ -3,25 +3,18 @@
 ```bash
 git clone https://github.com/TheBabelDragon/ECUgate.git
 cd ECUgate
-git checkout feat/ecugate-core
 pip install -e ".[dev]"
 pytest
 python -m examples.horsepowerpoint.demo
-python -m examples.horsepowerpoint.demo --db /tmp/hpp.db --reject-first
 ```
 
-Discovery demo (simulated device):
+## Discovery CLI
 
-```python
-from ecugate.discovery import DiscoveryEngine
-from ecugate.discovery.pipeline import InterfaceRecord
-from ecugate.discovery.manifests import load_manifests
-
-eng = DiscoveryEngine(manifest_dir="manifests/devices")
-eng.inject_simulated_interface(InterfaceRecord(
-    interface_id="sim0", interface_type="simulated",
-    vendor_id="SIMU", product_id="ECU1",
-    metadata={"device_id": "sim.ecu.v1"},
-))
-print(eng.discover().to_json())
+```bash
+python -m ecugate.discovery.cli --simulate --manifests manifests/devices
+python -m ecugate.discovery.cli --host --manifests manifests/devices
 ```
+
+Host enumeration is opt-in and non-destructive. Discovery never sets `authorized: true`.
+
+See [HOST_ENUMERATION.md](HOST_ENUMERATION.md) for platform notes and optional dependencies.
