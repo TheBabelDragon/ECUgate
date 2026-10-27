@@ -2,21 +2,15 @@
 
 Examples
 --------
-  # Simulation only (default — no host scan)
   python -m ecugate.discovery.cli --simulate
-
-  # Opt-in host enumeration (serial + USB metadata, non-destructive)
   python -m ecugate.discovery.cli --host
-
-  # Host + manifests directory
-  python -m ecugate.discovery.cli --host --manifests manifests/devices
+  python -m ecugate.discovery.cli --simulate --inventory --save /tmp/bench.json
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -54,38 +48,14 @@ def main(argv: list[str] | None = None) -> int:
         description="ECUgate discovery — JSON capability report (never authorizes writes)."
     )
     mode = parser.add_mutually_exclusive_group()
-    mode.add_argument(
-        "--simulate",
-        action="store_true",
-        default=False,
-        help="Inject the built-in simulated ECU interface (no host scan).",
-    )
-    mode.add_argument(
-        "--host",
-        action="store_true",
-        default=False,
-        help="Opt-in: enumerate real serial/USB interfaces on this host (non-destructive).",
-    )
-    parser.add_argument(
-        "--simulate-and-host",
-        action="store_true",
-        help="Include both simulated interface and host enumeration.",
-    )
-    parser.add_argument(
-        "--manifests",
-        default=None,
-        help="Directory of device manifest JSON files.",
-    )
-    parser.add_argument(
-        "--deps",
-        action="store_true",
-        help="Print optional dependency status and exit.",
-    )
-    parser.add_argument(
-        "--compact",
-        action="store_true",
-        help="Compact JSON (no indentation).",
-    )
+    mode.add_argument("--simulate", action="store_true", default=False, help="Simulated ECU interface.")
+    mode.add_argument("--host", action="store_true", default=False, help="Opt-in host serial/USB scan.")
+    parser.add_argument("--simulate-and-host", action="store_true", help="Simulated + host enumeration.")
+    parser.add_argument("--manifests", default=None, help="Device manifest directory.")
+    parser.add_argument("--deps", action="store_true", help="Print optional dependency status.")
+    parser.add_argument("--inventory", action="store_true", help="Emit schema v2 multi-device inventory.")
+    parser.add_argument("--save", default=None, help="Write report JSON to this path.")
+    parser.add_argument("--compact", action="store_true", help="Compact JSON.")
     args = parser.parse_args(argv)
 
     if args.deps:
@@ -104,18 +74,25 @@ def main(argv: list[str] | None = None) -> int:
             manifests = str(candidate)
 
     eng = build_engine(simulate=simulate, host=host, manifests=manifests)
-    report = eng.discover()
-    payload = report.to_dict()
+    if args.inventory:
+        payload = eng.discover_inventory().to_dict()
+    else:
+        payload = eng.discover().to_dict()
     payload["cli"] = {
         "simulate": simulate,
         "host": host,
         "manifests": manifests,
+        "inventory": bool(args.inventory),
         "optional_deps": optional_dependency_status(),
     }
-    if args.compact:
-        print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
-    else:
-        print(json.dumps(payload, indent=2, sort_keys=True))
+    text = (
+        json.dumps(payload, sort_keys=True, separators=(",", ":"))
+        if args.compact
+        else json.dumps(payload, indent=2, sort_keys=True)
+    )
+    print(text)
+    if args.save:
+        Path(args.save).write_text(text)
     assert payload.get("authorized") is False
     return 0
 
