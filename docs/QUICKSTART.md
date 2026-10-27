@@ -17,4 +17,12 @@ python -m ecugate.discovery.cli --host --manifests manifests/devices
 
 Host enumeration is opt-in and non-destructive. Discovery never sets `authorized: true`.
 
-See [HOST_ENUMERATION.md](HOST_ENUMERATION.md) for platform notes and optional dependencies.
+See [HOST_ENUMERATION.md](HOST_ENUMERATION.md) for platform notes.
+
+## Bench inventory
+
+```bash
+python -m ecugate.discovery.cli --simulate --inventory --manifests manifests/devices --save /tmp/bench.json
+```
+
+Multi-device topology and readiness blockers: [BENCH_TOPOLOGY.md](BENCH_TOPOLOGY.md).
