@@ -4,27 +4,31 @@
 
 Model-agnostic agent tool and memory substrate for constrained, auditable ECU interaction.
 
-## ⚠️ Implementation is on `feat/ecugate-core`
+- **Typed tools** — schemas, discovery, structured results
+- **Structured memory** — SQLite facts/observations/decisions/outcomes/failures
+- **Enforceable permissions** — READ / PROPOSE / EXECUTE
+- **Auditable lifecycle** — DISCOVER → READ → RECALL → PROPOSE → VALIDATE → AUTHORIZE → EXECUTE → OBSERVE → RECORD
+- **Hardware discovery** — ENUMERATE → IDENTIFY → DESCRIBE → VALIDATE (never auto-authorizes writes)
 
-`main` is not the working tree yet. Use:
+**HorsePowerPoint** is the demo app. ECUgate is the product.
+
+## Quick start
 
 ```bash
 git clone https://github.com/TheBabelDragon/ECUgate.git
 cd ECUgate
-git checkout feat/ecugate-core
+git checkout feat/ecugate-core   # until PR #1 merges
 pip install -e ".[dev]"
 pytest
 python -m examples.horsepowerpoint.demo
 ```
 
-Branch: https://github.com/TheBabelDragon/ECUgate/tree/feat/ecugate-core
-
-## Product
+## Product surface
 
 - Typed tools + permissions (READ / PROPOSE / EXECUTE)
 - Structured SQLite memory (never used as authorization)
-- Auditable lifecycle: DISCOVER → READ → RECALL → PROPOSE → VALIDATE → AUTHORIZE → EXECUTE → OBSERVE → RECORD
-- Schema-driven hardware discovery (simulation-first; discovery never authorizes writes)
+- Auditable lifecycle with explicit authorize boundary
+- Schema-driven hardware discovery (simulation-first)
 - HorsePowerPoint demo (simulated ECU only — no real vehicle I/O)
 
 ## License
