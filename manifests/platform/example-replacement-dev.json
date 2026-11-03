@@ -1,0 +1,54 @@
+{
+  "bootloader_id": null,
+  "controller_id": "example-replacement-dev",
+  "electrical": {
+    "current_max_a": null,
+    "isolation": null,
+    "notes": null,
+    "protection": [],
+    "verification": "illustrative",
+    "voltage_max_v": null,
+    "voltage_min_v": null,
+    "voltage_nominal_v": 3.3
+  },
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example fixture only.",
+      "provenance": "illustrative",
+      "source": "platform.simulator",
+      "timestamp": "2026-11-03T04:13:51.629954+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "firmware_id": null,
+  "hardware_revision": null,
+  "interfaces": [
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": true,
+      "name": "twai",
+      "notes": null,
+      "protocol": "classical_can",
+      "required": false,
+      "verification": "illustrative"
+    }
+  ],
+  "known_restrictions": [
+    "development_only",
+    "not_vehicle_qualified"
+  ],
+  "manufacturer": "illustrative",
+  "model": "esp32-s3-modular-stack",
+  "notes": "Illustrative replacement based on ESP32-S3 development compute.",
+  "processor_architecture": "xtensa",
+  "processor_variant": "esp32-s3",
+  "protocols": [
+    "classical_can"
+  ],
+  "safety_class": "development",
+  "schema_version": "platform.v1",
+  "timing_requirements": {},
+  "unsupported_features": [],
+  "verification": "illustrative"
+}

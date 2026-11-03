@@ -14,6 +14,15 @@ Model-agnostic agent tool and memory substrate for constrained, auditable ECU in
 
 **HorsePowerPoint** is the demo app. ECUgate is the product.
 
+**Modular controller platform** (`ecugate.platform`) — vehicle/controller profiles, modular hardware manifests, versioned clone packages with explicit capture completeness, fail-closed compatibility evaluation, and simulated replacement/recovery workflows. ESP32-S3 is a first-class *development* target only; it is not an automotive-qualified ECU. See [docs/MODULAR_CONTROLLER_PLATFORM.md](docs/MODULAR_CONTROLLER_PLATFORM.md).
+
+```bash
+python -m ecugate.platform.cli profiles
+python -m ecugate.platform.cli esp32-s3
+python -m ecugate.platform.cli capture-report
+python -m ecugate.platform.cli compatibility --modules esp32-s3-dev-compute-v1
+```
+
 ## Quick start
 
 ```bash

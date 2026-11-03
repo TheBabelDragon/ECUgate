@@ -1,0 +1,46 @@
+{
+  "actuator_topology": [
+    "injectors",
+    "coils",
+    "idle"
+  ],
+  "engine_configuration": null,
+  "engine_family": "illustrative",
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example fixture only.",
+      "provenance": "illustrative",
+      "source": "platform.simulator",
+      "timestamp": "2026-11-03T04:13:51.629954+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "make": "illustrative",
+  "model": "example",
+  "model_year": 2010,
+  "module_dependencies": [],
+  "network_interfaces": [
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "powertrain_can",
+      "notes": null,
+      "protocol": "classical_can",
+      "required": false,
+      "verification": "illustrative"
+    }
+  ],
+  "notes": "Illustrative vehicle profile only.",
+  "original_controller_id": "example-original-ecu",
+  "schema_version": "platform.v1",
+  "sensor_topology": [
+    "crank",
+    "cam",
+    "map",
+    "tps"
+  ],
+  "transmission": null,
+  "vehicle_id": "example-vehicle-v1",
+  "verification": "illustrative"
+}
