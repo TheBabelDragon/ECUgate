@@ -1,0 +1,125 @@
+{
+  "calibration": {
+    "capture_method": null,
+    "data_length": null,
+    "digest": null,
+    "evidence": [],
+    "limitations": [
+      "calibration region is security-protected on source"
+    ],
+    "protected_dependency_ref": "immobilizer_or_security_access_required",
+    "provenance": null,
+    "region_id": "calibration",
+    "region_kind": "calibration",
+    "source_controller_id": "example-controller-illustrative",
+    "status": "protected",
+    "timestamp": "2026-11-03T05:42:14.829352+00:00",
+    "verification": "illustrative"
+  },
+  "capture_completeness": {
+    "captured": [
+      "firmware"
+    ],
+    "critical_missing_or_incomplete": [
+      "calibration",
+      "configuration"
+    ],
+    "is_complete": false,
+    "not_attempted": [
+      "configuration"
+    ],
+    "notes": "A complete clone requires successful capture of all required regions. Protected, unsupported, unreadable and not_attempted regions prevent completeness.",
+    "protected": [
+      "calibration",
+      "security_keys"
+    ],
+    "region_count": 4,
+    "unreadable": [],
+    "unsupported": []
+  },
+  "compatibility_constraints": [
+    "incomplete_capture"
+  ],
+  "configuration": {
+    "capture_method": null,
+    "data_length": null,
+    "digest": null,
+    "evidence": [],
+    "limitations": [
+      "capture not attempted in this example"
+    ],
+    "protected_dependency_ref": null,
+    "provenance": null,
+    "region_id": "configuration",
+    "region_kind": "configuration",
+    "source_controller_id": "example-controller-illustrative",
+    "status": "not_attempted",
+    "timestamp": null,
+    "verification": "illustrative"
+  },
+  "controller_identity": {
+    "controller_id": "example-controller-illustrative",
+    "manufacturer": "illustrative",
+    "model": "example-ecu",
+    "note": "Illustrative only; not a real vehicle controller."
+  },
+  "created_at": "2026-11-03T05:42:14.829443+00:00",
+  "diagnostic_metadata": null,
+  "firmware": {
+    "capture_method": "illustrative_read",
+    "data_length": 262144,
+    "digest": "936bb535a0aef64743e9658cbdb746cf77f7974f20d086ffd345d975ce21d4bd",
+    "evidence": [],
+    "limitations": [
+      "illustrative data only"
+    ],
+    "protected_dependency_ref": null,
+    "provenance": "example",
+    "region_id": "firmware",
+    "region_kind": "firmware",
+    "source_controller_id": "example-controller-illustrative",
+    "status": "captured",
+    "timestamp": "2026-11-03T05:42:14.829352+00:00",
+    "verification": "illustrative"
+  },
+  "hardware_identity": {
+    "revision": "unknown"
+  },
+  "other_regions": [
+    {
+      "capture_method": null,
+      "data_length": null,
+      "digest": null,
+      "evidence": [],
+      "limitations": [
+        "keys and credentials are never extracted"
+      ],
+      "protected_dependency_ref": "security_access_required",
+      "provenance": null,
+      "region_id": "security_keys",
+      "region_kind": "protected",
+      "source_controller_id": "example-controller-illustrative",
+      "status": "protected",
+      "timestamp": null,
+      "verification": "illustrative"
+    }
+  ],
+  "package_digest": "76976fc1bba30f41451acecacbe3caf5975b4bf58ab15af2c9b4c53d0dcb1d13",
+  "package_id": "example-incomplete-backup-v1",
+  "provenance": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example incomplete package for tests and documentation.",
+      "provenance": "illustrative",
+      "source": "platform.example",
+      "timestamp": "2026-11-03T05:42:14.829352+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "recovery_requirements": [
+    "security_access_for_calibration",
+    "re-capture_configuration",
+    "verify_firmware_digest_on_restore"
+  ],
+  "schema_version": "clone_package.v1"
+}

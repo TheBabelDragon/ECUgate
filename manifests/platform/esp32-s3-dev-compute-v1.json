@@ -1,0 +1,123 @@
+{
+  "capabilities": [
+    "gpio",
+    "adc",
+    "pwm",
+    "rmt",
+    "spi",
+    "i2c",
+    "uart",
+    "usb",
+    "twai_classical_can",
+    "wifi",
+    "bluetooth_le"
+  ],
+  "compatibility_constraints": [
+    "not_automotive_qualified",
+    "requires_external_can_transceiver",
+    "requires_external_can_fd_for_can_fd",
+    "requires_external_protected_drivers",
+    "requires_external_power_protection",
+    "requires_independent_safety_supervisor_for_vehicle_use"
+  ],
+  "dependencies": [
+    "can_transceiver",
+    "can_fd_controller",
+    "signal_conditioning",
+    "protected_output_drivers",
+    "power_protection_supervision",
+    "independent_watchdog_safety"
+  ],
+  "electrical": {
+    "current_max_a": null,
+    "isolation": null,
+    "notes": "MCU core voltage. Board-level 5 V / 12 V automotive supply requires external regulation and protection.",
+    "protection": [],
+    "verification": "illustrative",
+    "voltage_max_v": 3.6,
+    "voltage_min_v": 3.0,
+    "voltage_nominal_v": 3.3
+  },
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "ESP32-S3 public datasheet capabilities; not vehicle-qualified.",
+      "provenance": "declarative_hardware_strategy",
+      "source": "platform.esp32_s3_profile",
+      "timestamp": "2026-11-03T05:42:14.829312+00:00",
+      "verification_method": "documentation_review"
+    }
+  ],
+  "hardware_revision": "dev-board",
+  "interfaces": [
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": true,
+      "name": "twai",
+      "notes": "TWAI controller present; external CAN transceiver required for bus attachment.",
+      "protocol": "classical_can",
+      "required": false,
+      "verification": "illustrative"
+    },
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": true,
+      "name": "can_fd",
+      "notes": "No native CAN FD. External CAN FD controller required.",
+      "protocol": "can_fd",
+      "required": false,
+      "verification": "illustrative"
+    },
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "uart0",
+      "notes": null,
+      "protocol": "uart",
+      "required": false,
+      "verification": "illustrative"
+    },
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "usb",
+      "notes": null,
+      "protocol": "usb",
+      "required": false,
+      "verification": "illustrative"
+    },
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "spi",
+      "notes": null,
+      "protocol": "spi",
+      "required": false,
+      "verification": "illustrative"
+    },
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "i2c",
+      "notes": null,
+      "protocol": "i2c",
+      "required": false,
+      "verification": "illustrative"
+    }
+  ],
+  "kind": "compute",
+  "manufacturer": "Espressif (development board class)",
+  "model": "ESP32-S3",
+  "module_id": "esp32-s3-dev-compute-v1",
+  "name": "ESP32-S3 Development Compute Module",
+  "notes": "Development and supervisory compute only. Do not treat an ESP32-S3 development board as an automotive-qualified engine controller. A complete replacement platform requires modular external acquisition, protected drivers, power management and independent safety supervision.",
+  "pin_mappings": [],
+  "required_safety_properties": [
+    "independent_watchdog",
+    "power_supervision",
+    "output_driver_protection"
+  ],
+  "safety_class": "development",
+  "schema_version": "platform.v1",
+  "verification": "illustrative"
+}
