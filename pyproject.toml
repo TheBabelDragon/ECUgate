@@ -32,6 +32,7 @@ horsepowerpoint = "examples.horsepowerpoint.demo:main"
 ecugate-discover = "ecugate.discovery.cli:main"
 ecugate-vehicle = "ecugate.vehicle_io.cli:main"
 ecugate-preflight = "ecugate.preflight.cli:main"
+ecugate-platform = "ecugate.platform.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
