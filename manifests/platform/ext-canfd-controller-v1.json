@@ -1,0 +1,51 @@
+{
+  "capabilities": [
+    "can_fd",
+    "classical_can"
+  ],
+  "compatibility_constraints": [],
+  "dependencies": [],
+  "electrical": {
+    "current_max_a": null,
+    "isolation": null,
+    "notes": null,
+    "protection": [],
+    "verification": "unknown",
+    "voltage_max_v": null,
+    "voltage_min_v": null,
+    "voltage_nominal_v": null
+  },
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example fixture only.",
+      "provenance": "illustrative",
+      "source": "platform.simulator",
+      "timestamp": "2026-11-03T04:13:51.629954+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "hardware_revision": "illust-1",
+  "interfaces": [
+    {
+      "direction": "bidirectional",
+      "external_hardware_required": false,
+      "name": "can_fd",
+      "notes": "Illustrative external CAN FD controller module.",
+      "protocol": "can_fd",
+      "required": false,
+      "verification": "illustrative"
+    }
+  ],
+  "kind": "communications",
+  "manufacturer": null,
+  "model": null,
+  "module_id": "ext-canfd-controller-v1",
+  "name": "External CAN FD Controller (illustrative)",
+  "notes": "Illustrative. Not a verified commercial part.",
+  "pin_mappings": [],
+  "required_safety_properties": [],
+  "safety_class": "supervisory",
+  "schema_version": "platform.v1",
+  "verification": "illustrative"
+}
