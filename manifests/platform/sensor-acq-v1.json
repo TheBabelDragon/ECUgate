@@ -1,0 +1,41 @@
+{
+  "capabilities": [
+    "analog_input",
+    "filtered_adc"
+  ],
+  "compatibility_constraints": [],
+  "dependencies": [],
+  "electrical": {
+    "current_max_a": null,
+    "isolation": null,
+    "notes": null,
+    "protection": [],
+    "verification": "unknown",
+    "voltage_max_v": null,
+    "voltage_min_v": null,
+    "voltage_nominal_v": null
+  },
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example fixture only.",
+      "provenance": "illustrative",
+      "source": "platform.simulator",
+      "timestamp": "2026-11-03T04:13:51.629954+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "hardware_revision": "unknown",
+  "interfaces": [],
+  "kind": "analog_acquisition",
+  "manufacturer": null,
+  "model": null,
+  "module_id": "sensor-acq-v1",
+  "name": "Sensor Acquisition Module (illustrative)",
+  "notes": "Illustrative.",
+  "pin_mappings": [],
+  "required_safety_properties": [],
+  "safety_class": "supervisory",
+  "schema_version": "platform.v1",
+  "verification": "illustrative"
+}

@@ -1,0 +1,46 @@
+{
+  "capabilities": [
+    "regulated_5v",
+    "regulated_3v3",
+    "power_supervision"
+  ],
+  "compatibility_constraints": [],
+  "dependencies": [],
+  "electrical": {
+    "current_max_a": null,
+    "isolation": null,
+    "notes": null,
+    "protection": [
+      "reverse_polarity",
+      "overvoltage",
+      "load_dump_illustrative"
+    ],
+    "verification": "illustrative",
+    "voltage_max_v": 16.0,
+    "voltage_min_v": 9.0,
+    "voltage_nominal_v": 12.0
+  },
+  "evidence": [
+    {
+      "confidence": "illustrative",
+      "detail": "Example fixture only.",
+      "provenance": "illustrative",
+      "source": "platform.simulator",
+      "timestamp": "2026-11-03T04:13:51.629954+00:00",
+      "verification_method": "constructed"
+    }
+  ],
+  "hardware_revision": "unknown",
+  "interfaces": [],
+  "kind": "power_protection",
+  "manufacturer": null,
+  "model": null,
+  "module_id": "auto-power-protection-v1",
+  "name": "Protected Automotive Power Module (illustrative)",
+  "notes": "Illustrative power module. Not a verified automotive design.",
+  "pin_mappings": [],
+  "required_safety_properties": [],
+  "safety_class": "supervisory",
+  "schema_version": "platform.v1",
+  "verification": "illustrative"
+}
